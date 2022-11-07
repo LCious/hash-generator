@@ -20,5 +20,22 @@ Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo
 * Atsisiųskite jums patinkančią __C++__ palaikančią programą (_[Visual Studio](https://visualstudio.microsoft.com/downloads/), [CodeBlocks](https://www.codeblocks.org/downloads/)_).
 * Atsidarykite pateiktą programos kodą ir jį paleiskite arba komandinėje eiltuėje įrašykite `g++ -o main *.cpp` ir paleiskite su `./main`
 
+## Hash
+```c++
+	Hash(){
+		for (int i = 1; i < 64; i++){
+			for (int j = 0; j < s.size(); j++){
+				temp = hash[i];
+				temp = temp ^ int(s[j]);
+				hash[i] = char(temp);
+				hash[i - 1] += i ^ j;
+			}
+			hash[i] = int(hash[i]) + int(hash[64 - i]);
+		}
+		auto end = std::chrono::steady_clock::now();
 
+		hash = string_to_hex(hash);
+		hash.resize(64);
+	}
+```
 
