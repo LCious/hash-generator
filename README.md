@@ -13,7 +13,7 @@ Hash funkcija atitinka šiuos reikalavimus:
 * Hash funkcija yra atspari "kolizijai" (angl. collision resistance).
 
 ## Hash funkcijos veikimo principas
-Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo simbolių eilutė ją pasivertus į `int` tipą. Gavus initial_hash, jis yra paverčiamas į `string`, kuriame yra apskaičiuojamas gautojo initial_hash size. Susikūrus papildomą random_variable yra vykdoma galutinė hash funkcija, kuri išveda hex 64 simbolių eilutę.
+Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo simbolių eilutė ją pasivertus į `int` tipą. Gavus initial_hash, jis yra paverčiamas į `string`, kuris vėliau funkcijos `string_to_hex` pagalba yra verčiamas į simbolius kurių mums reikia `0123456789ABCDEF`. Tačiau hash'as gaunasi per ilgas, todėl .resize(64) pagalba susitvarkome iki tinkamo ilgio.
 
 ## Programos įdiegimas ir naudojimasis 
 * Atsisiųskite vieną programos versijų iš [Releases](https://github.com/LCious/hash-generator/releases) aplanko ir ją išarchyvuokite.
@@ -120,5 +120,9 @@ Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo
     
     AAB71EB4291AA64BE358DD4E484FF5349EAFB431AB404E6EDCDBD7EEE8EBD847
     ```  
-
+## Speed testing (konstitucija.txt) 
+### Hashing every line speed comparison
    
+Lines      |   2     |  4      |  8      |  16       |  32       |  64       |  128      |  256      |  512      |  789      |
+-----------|---------|---------|---------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+Speed      | 0.001207s |0.000949s| 0.001212s |0.001172s  | 0.001155s   | 0.001334s  | 0.001677s |  0.001963s| 0.002472s | 0.004377s |
