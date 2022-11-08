@@ -7,6 +7,7 @@
 #include <chrono>
 #include <random>
 
+
 using namespace std;
 
 string string_to_hex(const std::string &input)
@@ -67,9 +68,87 @@ bool file(string failas, vector<string> &data)
 	return true;
 }
 
+void generate(int size, int length) {
+	using hrClock = std::chrono::high_resolution_clock;
+	std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
+	std::uniform_int_distribution<int> numb(48, 126);
+
+	stringstream buffer;
+
+	string fileName = to_string(size);
+	fileName += "_" + to_string(length) + ".txt";
+	std::ofstream rf(fileName);
+
+	auto start = std::chrono::high_resolution_clock::now();
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < length; j++)
+		{
+			buffer << (char)numb(mt);
+		}
+		if (i < size - 1)
+			buffer << "\n";
+	}
+
+	rf << buffer.str();
+
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff = end - start; // Skirtumas (s)
+	std::cout << size << " row size generation time " << diff.count() << " s\n";
+
+	buffer.str("");
+	buffer.clear();
+	rf.close();
+}
+
+void generate(int size) {
+	using hrClock = std::chrono::high_resolution_clock;
+	std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
+	std::uniform_int_distribution<int> numb(48, 126);
+	std::uniform_int_distribution<int> rnd(100, 100);
+
+	stringstream buffer;
+
+	string fileName = to_string(size);
+	fileName += ".txt";
+	std::ofstream rf(fileName);
+
+	auto start = std::chrono::high_resolution_clock::now();
+	int length;
+	string smth;
+	for (int i = 0; i < size; i++)
+	{
+		length = rnd(mt);
+		smth.clear();
+		for (int j = 0; j < length; j++)
+		{
+			smth += (char)numb(mt);
+		}
+		buffer << smth;
+		if (i < size - 1)
+			buffer << "\n";
+		std::uniform_int_distribution<int> change(0, length - 1);
+		smth.at(change(mt)) = '/';
+		buffer << smth;
+		i++;
+		if (i < size - 1)
+			buffer << "\n";
+	}
+
+	rf << buffer.str();
+
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<double> diff = end - start; // Skirtumas (s)
+	std::cout << size << " row size generation time " << diff.count() << " s\n";
+
+	buffer.str("");
+	buffer.clear();
+	rf.close();
+}
+
 void hash_function(string txt)
 {
-	string hash = "EE9A17A0F3E783EE983B7EFD23324395FE3A8E0563F860EF72D5420B9414FBEC"; // seed'as
+	string hash = "EE9A17A0F3E783EE983B7EFD23324395FE3A8E0563F860EF72D5420B9414FBEC"; // SEED
 	int tmp = 0;
 	for (int i = 1; i < 64; i++)
 	{ // hash function
@@ -84,12 +163,13 @@ void hash_function(string txt)
 	}
 	hash = string_to_hex(hash);
 	hash.resize(64);
+	cout << "Hash:" << endl;
 	cout << hash << endl;
 }
 
 void hash_function_everyline(int lines,vector<string> &col){
 	int tmp = 0;
-	string hash = "EE9A17A0F3E783EE983B7EFD23324395FE3A8E0563F860EF72D5420B9414FBEC"; // seed'as
+	string hash = "EE9A17A0F3E783EE983B7EFD23324395FE3A8E0563F860EF72D5420B9414FBEC"; // SEED
 	for (int i = 0; i < lines; i++)
 	{
 		for (int j = 0; j < 64; j++)
@@ -106,9 +186,9 @@ void hash_function_everyline(int lines,vector<string> &col){
 		hash = string_to_hex(hash);
 		hash.resize(64);
 		col[i] = hash;
-		cout << col[i];
+		// cout << col[i]; << endl;
 	}
-	cout <<"Eilutciu: "<< lines;
+	cout <<"Eilutciu skaicius: "<< lines;
 }
 
 void collisions(int lines, vector<string> col) {
@@ -128,21 +208,26 @@ void collisions(int lines, vector<string> col) {
 
 int main(int argc, char const *argv[])
 {
+	
+	generate(100000); // skiriasi 1 simbolis
+
     cout << "Pasirinkite testavimo metoda: " << endl
     << "---------------------------" << endl
     << "1. Ivedimas i konsole. " << endl
     << "2. Ivedimas is failo. " << endl
-    << "2.1 Koliziju testavimas " << endl
-    << "2.2 Skirtingumo testavimas " << endl
 	<< "3. Palyginimas " << endl
+	<< "4. Failu generavimas " << endl
 	<< "---------------------------" << endl;
 	int input;
 	cin >> input;
-
 	int lines = 0;
 	string txt;
 	stringstream text;
 	vector<string> col;
+	while (input != 1 && input != 2 && input != 3 && input != 4) {
+		cout << "Ivestis neteisinga, bandykite isnaujo:" << endl;
+		cin >> input;
+	}
 	if (input == 2)
 	{
 		vector<string> data;
@@ -159,30 +244,29 @@ int main(int argc, char const *argv[])
 			lines++;
 		}
 		txt = text.str();
-		if (txt.size() != 0)
-		{
+
     		cout << "---------------------------------------------" << endl
 				 << "Ar norite atlikti testavimus? (Ne:0,Taip:1): " << endl
 				 << "---------------------------------------------" << endl;
-			int input;
-			cin >> input;
-			while(input != 0 && input != 1){
+			int input1;
+			cin >> input1;
+			while(input1 != 0 && input1 != 1){
 				cout << "Neteisinga ivestis! Bandykite isnaujo";
-				cin >> input;
+				cin >> input1;
 			}
-			if(input == 0){
+			if(input1 == 0){
 				auto start = std::chrono::steady_clock::now();
 				hash_function(txt);
 				auto end = std::chrono::steady_clock::now();
 				cout << "Uztruko: " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000000. << "s" << endl;
-			} else if(input == 1){
-				// auto start = std::chrono::steady_clock::now();
+			} else if(input1 == 1){
+				auto start = std::chrono::steady_clock::now();
 				hash_function_everyline(lines, col);
 				collisions(lines, col);
-				// auto end = std::chrono::steady_clock::now();
-				// cout << "Uztruko: " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000000. << "s" << endl;
+				auto end = std::chrono::steady_clock::now();
+				cout << "Uztruko: " << std::chrono::duration_cast<std::chrono::microseconds>(end - start).count() / 1000000. << "s" << endl;
 			}
-		}
+
 	}
 	else if (input == 1)
 	{
@@ -192,5 +276,28 @@ int main(int argc, char const *argv[])
 		getline(cin, txt);
 		cout << "Pradinis tekstas: " << endl << txt << endl;
 		hash_function(txt);
+	}
+	else if (input == 3)
+	{
+		"To do comparison";
+	}
+	else if (input == 4)
+	{
+		cout << "Pasirinkite failo generavima: " << endl
+		<< "---------------------------" << endl
+		<< "1. 100000 simboliu ir 1000 eiluciu " << endl
+		<< "2. 100000 simboliu su skirtingu 1 simboliu " << endl
+		<< "---------------------------" << endl;
+		cin >> input;
+		while (input != 1 && input != 2) {
+			cout << "Ivestis neteisinga, bandykite isnaujo:" << endl;
+			cin >> input;
+			if (input == 1) {
+				generate(100000, 1000); // random simboliu eilutes
+			}
+			else if(input ==2){
+				generate(100000);
+			}
+		}
 	}
 }
