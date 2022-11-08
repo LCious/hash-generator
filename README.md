@@ -20,6 +20,11 @@ Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo
 * Atsisiųskite jums patinkančią __C++__ palaikančią programą (_[Visual Studio](https://visualstudio.microsoft.com/downloads/), [CodeBlocks](https://www.codeblocks.org/downloads/)_).
 * Atsidarykite pateiktą programos kodą ir jį paleiskite arba komandinėje eiltuėje įrašykite `g++ -o main *.cpp` ir paleiskite su `./main`
 
+## Programos veikimas
+Atsidarius programą, naudotojas gali rinktis iš jam duotų 5 variantų:
+1. Input in console
+2. Input from file
+3. Comparison
 ## Hash
 ```c++
 	Hash(){
@@ -38,7 +43,7 @@ Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo
 		hash.resize(64);
 	}
 ```
-
+# TESTS
 ## Test analysis:
 - Simillar text
 
