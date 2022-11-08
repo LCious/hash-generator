@@ -25,6 +25,7 @@ Atsidarius programą, naudotojas gali rinktis iš jam duotų 5 variantų:
 1. Input in console
 2. Input from file
 3. Comparison
+4. Generate files
 ## Hash
 ```c++
 	Hash(){
