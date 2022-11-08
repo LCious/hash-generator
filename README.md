@@ -37,8 +37,6 @@ Atsidarius programą, naudotojas gali rinktis iš jam duotų 5 variantų:
 			}
 			hash[i] = int(hash[i]) + int(hash[64 - i]);
 		}
-		auto end = std::chrono::steady_clock::now();
-
 		hash = string_to_hex(hash);
 		hash.resize(64);
 	}
