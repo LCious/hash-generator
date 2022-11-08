@@ -150,3 +150,17 @@ Atsidarius programą, naudotojas gali rinktis iš jam duotų 5 variantų:
 Lines      |   2     |  4      |  8      |  16       |  32       |  64       |  128      |  256      |  512      |  789      |
 -----------|---------|---------|---------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
 Speed      | 0.001207s |0.000949s| 0.001212s |0.001172s  | 0.001155s   | 0.001334s  | 0.001677s |  0.001963s| 0.002472s | 0.004377s |
+
+## Collision testing
+- Bandymas su 100 000 atsitiktinai sugeneruotų eilučių po 1000 simbolių
+Output:
+```console
+Eiluciu skaicius: 100000
+Koliziju skaicius: 0
+```
+- Bandymas su 100 000 atsitiktinai sugeneruotų eilučių porų su 1 pakeistu simboliu
+Output:
+```console
+Eiluciu skaicius: 100000
+Koliziju skaicius: 0
+```
