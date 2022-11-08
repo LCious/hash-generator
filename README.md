@@ -40,7 +40,27 @@ Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo
 ```
 
 ## Test analysis:
+- Simillar text
 
+    ### Input:
+    
+    ```console
+    vilnius
+    
+    Vilnius
+    
+    Vilnius!
+    ```
+    
+    ### Output:
+    
+    ```console
+    5B91A88EA39480C3BBD2B7C8D0C9CFEE08170EE905FA06263435314640454281
+    
+    5B71C86EC3B460E39BF297E8F0E9AFCE28372EC925DAE60654555166606562A1
+    
+    6195AB90A4947FD3CADEC2D2DBD1D6041D2D21FD160A174653514C625B5D59A7
+    ```
 - File containing only `a`
 
     ### Input:
