@@ -121,7 +121,7 @@ Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo
     AAB71EB4291AA64BE358DD4E484FF5349EAFB431AB404E6EDCDBD7EEE8EBD847
     ```  
 ## Speed testing (konstitucija.txt) 
-### Hashing every line speed comparison
+### Hashing speed comparison
    
 Lines      |   2     |  4      |  8      |  16       |  32       |  64       |  128      |  256      |  512      |  789      |
 -----------|---------|---------|---------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
