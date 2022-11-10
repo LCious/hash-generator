@@ -147,9 +147,9 @@ Atsidarius programą, naudotojas gali rinktis iš jam duotų 5 variantų:
 ## Speed testing (konstitucija.txt) 
 ### Hashing speed comparison
    
-Lines      |   2     |  4      |  8      |  16       |  32       |  64       |  128      |  256      |  512      |  789      |
------------|---------|---------|---------|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-Speed      | 0,000016s | 0,00005s|  0,00010s | 0,00032s  | 0,00045s | 0.00097 s  | 0.00214 s | 0.00362 s| 0.00794 s | 0.01423 s |
+Lines      |   2       |  4        |  8        |  16       |  32       |  64        |  128      |  256      |  512      |  789      |
+-----------|---------  |---------  |---------  |-----------|-----------|----------- |-----------|-----------|-----------|-----------|
+Speed      | 0,000016s | 0,00005s  |  0,00010s | 0,00032s  | 0,00045s  | 0.00097 s  | 0.00214 s | 0.00362 s | 0.00794 s | 0.01423 s |
 
 ## Collision testing
 - Test with 100 000 randomly generated lines - 1000 each
@@ -183,9 +183,34 @@ maximum similarity: 73.4375%
  ---------------------------------------------
 ```
 Thus hash is not the best (weak avalanche effect). 
+## Comparison with SHA-256
+### Speed test
+![chart-compare-1](https://user-images.githubusercontent.com/103113016/201062530-662237f9-272e-480d-aaf6-fe9b4b5c3be2.png)
+
+Lines      |   2       |  4        |  8        |  16       |  32       |  64        |  128      |  256      |  512      |  789      |
+-----------|---------  |---------  |---------  |-----------|-----------|----------- |-----------|-----------|-----------|-----------|
+My Hash (s)| 0.000016| 0.00005|  0.00010| 0,00032| 0,00045| 0.00097| 0.00214| 0.00362| 0.00794| 0.01423|
+SHA-256 (s)| 0.000021| 0.000019|  0.000034| 0.000061| 0.00011| 0.00022| 0.00044| 0.00089| 0.0019| 0.0029 |
+### Comparing similarity with 50 000 rows (HEX/BIN)
 
 # Išvados:
 ## Privalumai:
 - Visi hash'ai skirtingi, t.y. 0 kolizijų.
 ## Trūkumai:
 - Nemažas average panašumas hex'ų lygyje, ir ypač didelis bit'ų lygyje
+# Hashing with salt analysis:
+- Salt is randomly generated (10 characters)
+- With each input the output is different aswell
+```console
+ Mantas
+ 
+ Mantas
+```
+```console
+BCA822B032C3B0B032B7C1ADAFB81E25A8BA30BE35AE22BDAB28BD341D2B2534
+
+BC0EC416CC1D1216D011230B0D12C4C70E20D224CF08C02311CA1BD6BFD1C7D6
+```
+The similarity between these two strings is 12.5%.
+##Conclusion
+- Hashing with salt, will always output different hash
