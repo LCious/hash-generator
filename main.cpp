@@ -7,8 +7,7 @@ int main(int argc, char const* argv[])
         << "---------------------------" << endl
         << "1. Ivedimas i konsole. " << endl
         << "2. Ivedimas is failo. " << endl
-        << "3. Palyginimas " << endl
-        << "4. Failu generavimas " << endl
+        << "3. Failu generavimas " << endl
         << "---------------------------" << endl;
     int input;
     cin >> input;
@@ -61,11 +60,17 @@ int main(int argc, char const* argv[])
         }
         if (input1 == 0)
         {
+            using hrClock = std::chrono::high_resolution_clock;
+            std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
+            auto start = std::chrono::high_resolution_clock::now();
             hash_function(txt);
+            auto end = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> diff = end - start; // Skirtumas (s)
+            cout << "Hash'avimas uztruko: " << diff.count() << " s\n"; 
         }
         else if (input1 == 1)
         {
-            hash_function_everyline(lines, col,input1);
+            hash_function(lines, col);
             collisions(lines, col);
             vector<double> percent;
             for (int i = 0; i < col.size() - 1; i++) {
@@ -113,10 +118,6 @@ int main(int argc, char const* argv[])
         hash_function(txt);
     }
     else if (input == 3)
-    {
-        "To do comparison";
-    }
-    else if (input == 4)
     {
         cout << "Pasirinkite failo generavima: " << endl
         << "-------------------------------------------" << endl
