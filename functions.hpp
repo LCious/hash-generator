@@ -9,14 +9,6 @@
 #include <chrono>
 #include <random>
 
-#include <iomanip>
-#include <algorithm>
-#include <time.h>
-
-// #include "includes/md5.h"
-// #include "includes/sha1.h"
-// #include "includes/sha256.h"
-
 using namespace std;
 
 string string_to_hex(const std::string&);
