@@ -13,7 +13,7 @@ Hash funkcija atitinka šiuos reikalavimus:
 * Hash funkcija yra atspari "kolizijai" (angl. collision resistance).
 
 ## Hash funkcijos veikimo principas
-Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo simbolių eilutė ją pasivertus į `int` tipą. Gavus initial_hash, jis yra paverčiamas į `string`, kuris vėliau funkcijos `string_to_hex` pagalba yra verčiamas į simbolius kurių mums reikia `0123456789ABCDEF`. Tačiau hash'as gaunasi per ilgas, todėl .resize(64) pagalba susitvarkome iki tinkamo ilgio.
+Algoritmas turi pradinį seed'ą, su kuriuo yra modifikuojamas pradinio įvedimo simbolių eilutė ją pasivertus į `int` tipą. Pabaigus suktis algoritmui gauname initial_hash, kuris yra simbolių kratinys, funkcijos `string_to_hex` pagalba yra verčiamas į simbolius kurių mums reikia `0123456789ABCDEF`. Tačiau hash'as gaunasi per ilgas, todėl susitvarkome iki tinkamo ilgio.
 
 ## Programos įdiegimas ir naudojimasis 
 * Atsisiųskite vieną programos versijų iš [Releases](https://github.com/LCious/hash-generator/releases) aplanko ir ją išarchyvuokite.
