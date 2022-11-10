@@ -1,6 +1,27 @@
 #include "functions.hpp"
 using namespace std;
 
+void generate_salt(int size, int length, string &salt) {
+	using hrClock = std::chrono::high_resolution_clock;
+	std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
+	std::uniform_int_distribution<int> numb(48, 126); //raides ASCII
+
+	stringstream buffer;	//irasymas i atminti
+
+	for (int i = 0; i < size; i++)	//eiluciu kiekis
+	{
+		for (int j = 0; j < length; j++)	//eilutes ilgis
+		{
+			buffer << (char)numb(mt);
+		}
+		if (i < size - 1)					//paskutinis endl ne (1001) o 1000
+			buffer << "\n";
+	}
+	salt= buffer.str();
+	buffer.str("");
+	buffer.clear();
+}
+
 int main(int argc, char const* argv[])
 {
     cout << "Pasirinkite testavimo metoda: " << endl
@@ -8,6 +29,7 @@ int main(int argc, char const* argv[])
         << "1. Ivedimas i konsole. " << endl
         << "2. Ivedimas is failo. " << endl
         << "3. Failu generavimas " << endl
+        << "4. Salt " << endl
         << "---------------------------" << endl;
     int input;
     cin >> input;
@@ -138,5 +160,17 @@ int main(int argc, char const* argv[])
         {
             generate(100000); // skiriasi vienas simbolis
         }
+    }
+    else if(input ==4){
+        string salt;
+        generate_salt(1,10, salt);
+        cout << "Iveskite teksta: ";
+        cin.clear();
+        cin.ignore(256, '\n');
+        getline(cin, txt);
+        cout << "Pradinis tekstas: " << endl
+        << txt << endl;
+        hash_function(txt+salt);
+        cout<<"Salt: "<<salt<<endl;
     }
 }
