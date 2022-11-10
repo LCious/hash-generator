@@ -192,7 +192,7 @@ Lines      |   2       |  4        |  8        |  16       |  32       |  64    
 My Hash (s)| 0.000016| 0.00005|  0.00010| 0,00032| 0,00045| 0.00097| 0.00214| 0.00362| 0.00794| 0.01423|
 SHA-256 (s)| 0.000021| 0.000019|  0.000034| 0.000061| 0.00011| 0.00022| 0.00044| 0.00089| 0.0019| 0.0029 |
 ### Comparing similarity with 50 000 rows (HEX/BIN)
-
+![image](https://user-images.githubusercontent.com/103113016/201070414-88ea4ca2-5ef6-4d01-9c1a-fef9f9e28bf7.png)
 # Išvados:
 ## Privalumai:
 - Visi hash'ai skirtingi, t.y. 0 kolizijų.
@@ -212,5 +212,5 @@ BCA822B032C3B0B032B7C1ADAFB81E25A8BA30BE35AE22BDAB28BD341D2B2534
 BC0EC416CC1D1216D011230B0D12C4C70E20D224CF08C02311CA1BD6BFD1C7D6
 ```
 The similarity between these two strings is 12.5%.
-##Conclusion
+## Conclusion
 - Hashing with salt, will always output different hash
