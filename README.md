@@ -183,3 +183,9 @@ maximum similarity: 73.4375%
  ---------------------------------------------
 ```
 Thus hash is not the best (weak avalanche effect). 
+
+#Išvados:
+##Privalumai:
+-Visi hash'ai skirtingi, t.y. 0 kolizijų.
+##Trūkumai:
+-Nemažas average panašumas hex'ų lygyje, ir ypač didelis bit'ų lygyje
