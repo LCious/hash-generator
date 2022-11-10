@@ -152,13 +152,13 @@ Lines      |   2     |  4      |  8      |  16       |  32       |  64       |  
 Speed      | 0,000016s | 0,00005s|  0,00010s | 0,00032s  | 0,00045s | 0.00097 s  | 0.00214 s | 0.00362 s| 0.00794 s | 0.01423 s |
 
 ## Collision testing
-- Bandymas su 100 000 atsitiktinai sugeneruotų eilučių po 1000 simbolių
+- Test with 100 000 randomly generated lines - 1000 each
 Output:
 ```console
 Eiluciu skaicius: 100000
 Koliziju skaicius: 0
 ```
-- Bandymas su 100 000 atsitiktinai sugeneruotų eilučių porų su 1 pakeistu simboliu
+- Test with 50 000 randomly generated pairs of lines with 1 different symbol
 Output:
 ```console
 Eiluciu skaicius: 100000
