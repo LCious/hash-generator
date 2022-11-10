@@ -9,6 +9,10 @@
 #include <chrono>
 #include <random>
 
+#include <iomanip>
+#include <algorithm>
+#include <time.h>
+
 using namespace std;
 
 string string_to_hex(const std::string&);
@@ -21,7 +25,7 @@ void generate(int, int);
 
 void generate(int); 
 
-void hash_function_everyline(int,vector<string>&,int);
+void hash_function(int,vector<string>&);
 
 void collisions(int, vector<string>);
 

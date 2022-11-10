@@ -160,12 +160,9 @@ void hash_function(string txt)
 	cout << hash << endl;
 }
 
-void hash_function_everyline(int lines,vector<string> &col, int input){
-	using hrClock = std::chrono::high_resolution_clock;
-	std::mt19937 mt(static_cast<long unsigned int>(hrClock::now().time_since_epoch().count()));
+void hash_function(int lines,vector<string> &col){
 	int tmp = 0;
 	string hash = "DB1C5DAB6DAFFE28BC1C5D6BC8F912995A2C2AA62E60FEEA036931F9F85EC770"; // SEED
-	auto start = std::chrono::high_resolution_clock::now();
 	for (int i = 0; i < lines; i++)
 	{
 		for (int j = 0; j < 64; j++)
@@ -183,10 +180,7 @@ void hash_function_everyline(int lines,vector<string> &col, int input){
 		hash.resize(64);
 		col[i] = hash;
 	}
-	auto end = std::chrono::high_resolution_clock::now();
 	cout << "Eilutciu skaicius: " << lines << endl;
-	std::chrono::duration<double> diff = end - start; // Skirtumas (s)
-	cout << "Hash'avimas uztruko: " << diff.count() << " s\n";
 }
 
 void collisions(int lines, vector<string> col) {
