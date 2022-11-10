@@ -32,9 +32,9 @@ Atsidarius programą, naudotojas gali rinktis iš jam duotų 5 variantų:
 	        int tmp = 0;
 	        string hash = "DB1C5DAB6DAFFE28BC1C5D6BC8F912995A2C2AA62E60FEEA036931F9F85EC770";
 		for (int i = 1; i < 64; i++){
-			for (int j = 0; j < s.size(); j++){
+			for (int j = 0; j < txt.size(); j++){
 				temp = hash[i];
-				temp = temp ^ int(s[j]);
+				temp = temp ^ int(txt[j]);
 				hash[i] = char(temp);
 				hash[i - 1] += i ^ j;
 			}
