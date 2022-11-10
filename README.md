@@ -30,7 +30,7 @@ Atsidarius programą, naudotojas gali rinktis iš jam duotų 5 variantų:
 ```c++
 	Hash(){
 	        int tmp = 0;
-	        string hash = "DB1C5DAB6DAFFE28BC1C5D6BC8F912995A2C2AA62E60FEEA036931F9F85EC770"; // SEED
+	        string hash = "DB1C5DAB6DAFFE28BC1C5D6BC8F912995A2C2AA62E60FEEA036931F9F85EC770";
 		for (int i = 1; i < 64; i++){
 			for (int j = 0; j < s.size(); j++){
 				temp = hash[i];
